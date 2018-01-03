@@ -12,6 +12,7 @@
 include("cache.php");
 
 $c = new Cache();
+
 $result = $c->get("queryResult");
 
 if(!$result) // bool(false) - not cached or expired
@@ -39,22 +40,26 @@ else
 
 ## Functions
 ### function __construct($name = "default", $dir = "tmp/", $extension = ".cache")
+Class constructor
 * `$name` - name of the cache
 * `$dir` - directory where the cache will be stored
 * `$extension` - extension of the cache file
 
 ### function set($key, $value, $ttl = -1)
+Writes to cache
 * `$key` - key of the value
 * `$value` - value
 * `$ttl` - *Time To Live* (in how many seconds value will expire)
 
 ### function get($key)
+Reads from cache
 * `$key` - key of the value
 * return:
   * bool(false) - value not cached or expired
   * value - cached value
 
 ### function has($key)
+Checks if value is cached
 * `$key` - key of the value
 * return:
   * bool(false) - value not cached or expired
