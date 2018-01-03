@@ -60,7 +60,7 @@ class Cache {
         $this->setCache($cache);
     }
 
-    public function has($key)
+    public function get($key, &$out)
     {
         $cache = $this->getCache();
 
@@ -77,27 +77,8 @@ class Cache {
             return false;
         }
 
+        $out = unserialize($data["v"]);
         return true;
-    }
-
-    public function get($key)
-    {
-        $cache = $this->getCache();
-
-        if(!is_array($cache)) return false;
-        if(!array_key_exists($key, $cache)) return false;
-
-        $data = $cache[$key];
-
-        if($this->isExpired($data))
-        {
-            unset($cache[$key]);
-            $this->setCache($cache);
-
-            return false;
-        }
-
-        return unserialize($data["v"]);
     }
 
     private function isExpired($data)
