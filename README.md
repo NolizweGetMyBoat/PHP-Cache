@@ -54,6 +54,7 @@ Writes to cache
 ### function get($key, &$out)
 Reads from cache
 * `$key` - key of the value
+* `&$out` - reference to the output value
 * return:
   * bool(false) - value not cached or expired
   * bool(true) - success (value is set to the `$out` argument)
