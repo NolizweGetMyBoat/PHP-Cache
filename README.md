@@ -13,13 +13,13 @@ include("cache.php");
 
 $c = new Cache();
 
-$result = $c->get("queryResult");
-
-if(!$result) // bool(false) - not cached or expired
+if(!$c->get("example", $result))
 {
     $result = /* some extensive operation here */;
-    $c->set("queryResult", $result, 300); // cache result for 5 minutes (300 seconds)
+    $c->set("example", $result, 300); // cache result for 5 minutes (300 seconds)
 }
+
+var_dump($result);
 ```
 
 ### Example Two
@@ -28,9 +28,9 @@ include("cache.php");
 
 $c = new Cache();
 
-if($c->has("videoViews")
+if($c->get("views", $views))
 {
-    echo "Video views: " . $c->get("videoViews");
+    echo "Video views: " . $views;
 }
 else
 {
@@ -51,16 +51,9 @@ Writes to cache
 * `$value` - value
 * `$ttl` - *Time To Live* (in how many seconds value will expire)
 
-### function get($key)
+### function get($key, &$out)
 Reads from cache
 * `$key` - key of the value
 * return:
   * bool(false) - value not cached or expired
-  * value - cached value
-
-### function has($key)
-Checks if value is cached
-* `$key` - key of the value
-* return:
-  * bool(false) - value not cached or expired
-  * bool(true) - value cached and available
+  * bool(true) - success (value is set to the `$out` argument)
