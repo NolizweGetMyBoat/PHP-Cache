@@ -80,6 +80,19 @@ class Cache {
         $out = unserialize($data["v"]);
         return true;
     }
+	
+	public function remove($key)
+	{
+		$cache = $this->getCache();
+
+        if(!is_array($cache)) return false;
+        if(!array_key_exists($key, $cache)) return false;
+		
+		unset($cache[$key]);
+		$this->setCache($cache);
+
+		return true;
+	}
 
     private function isExpired($data)
     {
