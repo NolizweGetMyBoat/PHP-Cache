@@ -46,15 +46,22 @@ Class constructor
 * `$extension` - extension of the cache file
 
 ### function set($key, $value, $ttl = -1)
-Writes to cache
+Writes data to cache
 * `$key` - key of the value
 * `$value` - value
 * `$ttl` - *Time To Live* (in how many seconds value will expire)
 
 ### function get($key, &$out)
-Reads from cache
+Reads data from cache
 * `$key` - key of the value
 * `&$out` - reference to the output value
 * return:
   * bool(false) - value not cached or expired
   * bool(true) - success (value is set to the `$out` argument)
+  
+### function remove($key)
+Removes data from cache
+* `$key` - key of the value
+* return:
+  * bool(false) - key not found
+  * bool(true) - success
