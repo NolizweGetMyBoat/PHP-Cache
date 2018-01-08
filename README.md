@@ -31,6 +31,7 @@ $c = new Cache();
 if($c->get("views", $views))
 {
     echo "Video views: " . $views;
+    $c->remove("views"); // remove from cache
 }
 else
 {
