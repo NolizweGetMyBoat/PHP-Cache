@@ -19,10 +19,6 @@ class Cache {
 
         $dir = str_replace("\\", "/", $dir);
 
-        if(preg_match("/[^a-z0-9\.]/i", $name, $matches)) throw new Exception("Invalid name argument (must be alphanumeric)");
-        if(preg_match("/[^a-z0-9\/]/i", $dir, $matches)) throw new Exception("Invalid dir argument (must be alphanumeric)");
-        if(preg_match("/[^a-z0-9\.]/i", $extension, $matches)) throw new Exception("Invalid extension argument (must be alphanumeric)");
-
         if(!$this->endsWith($dir, "/"))
         {
             $dir .= "/";
